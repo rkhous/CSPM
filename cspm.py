@@ -39,7 +39,7 @@ def get_time(minute):
 #raid function
 @bot.command(pass_context=True)
 async def raid(ctx, arg, arg2, arg3, arg4):#arg = gym name, arg2 = pokemon name, arg3 = level, arg4 = time remaining
-    if ctx and ctx.message.channel.id == str(bot_channel):
+    if ctx and ctx.message.channel.id == str(bot_channel) and str(arg2).lower() in pokemon:
         pokemon_id = find_pokemon_id(str(arg2).capitalize())
         time = get_time(int(arg4))
         try:
