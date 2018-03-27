@@ -57,6 +57,9 @@ async def raid(ctx, arg, arg2, arg3, arg4):#arg = gym name, arg2 = pokemon name,
                            "null, null, " + str(time) + ", null);")
             database.commit()
             await bot.say('Successfully added your raid to the live map.')
+            await bot.send_message(discord.Object(id=log_channel), str(ctx.message.author.name) + ' said there was a ' + str(arg2) +
+                                   ' raid going on at ' + str(arg)) and print(str(ctx.message.author.name) + ' said there was a ' + str(arg2) +
+                                   ' raid going on at ' + str(arg))
         except:
             database.rollback()
             await bot.say('Unsuccesful in database query, your raid was not added to the live map.')
@@ -76,6 +79,9 @@ async def spawn(ctx, arg, arg2, arg3):
             database.commit()
             await bot.say('Successfully added your spawn to the live map.\n'
                           '*Pokemon timers are automatically given 15 minutes since the timer is unknown.*')
+            await bot.send_message(discord.Object(id=log_channel), str(ctx.message.author.name) + ' said there was a wild ' + str(arg) +
+                                   ' at these coordinates: ' + str(arg2) + ', ' + str(arg3))  and print(str(ctx.message.author.name) + ' said there was a wild ' + str(arg) +
+                                   ' at these coordinates: ' + str(arg2) + ', ' + str(arg3))
         except:
             await bot.say('Unsuccessful in database query, your reported spawn was not added to the live map.')
 @bot.command(pass_context=True)
