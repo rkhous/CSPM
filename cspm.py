@@ -87,6 +87,6 @@ async def spawn(ctx, arg, arg2, arg3):
 @bot.command(pass_context=True)
 async def map(ctx):
     if ctx:
-        await bot.say('Hey! Visit' + str(website) + ' to see our crowd-sourced spawns!')
+        await bot.say('Hey! Visit ' + str(website) + ' to see our crowd-sourced raids and spawns!')
 
 bot.run(token)
