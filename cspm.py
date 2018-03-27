@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 import asyncio
 from pokemonlist import pokemon, pokejson
-from config import bot_channel, token, host, user, password, database
+from config import bot_channel, token, host, user, password, database, website, log_channel
 import datetime
 import calendar
 
