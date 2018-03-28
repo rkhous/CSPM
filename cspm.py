@@ -41,7 +41,7 @@ async def raid(ctx, arg, arg2, arg3, arg4):#arg = gym name, arg2 = pokemon name,
         time_spawn = time_battle - 3600
         time_end = time_battle + 2760
         try:
-            cursor.execute("SELECT id FROM forts WHERE NAME LIKE '" + str(arg) + "%';")
+            cursor.execute("SELECT id FROM forts WHERE NAME LIKE '%" + str(arg) + "%';")
             gym_id = str(cursor.fetchall())
             gym_id = gym_id.split(',')
             gym_id = gym_id[0].split('((')
