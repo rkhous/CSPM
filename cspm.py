@@ -34,7 +34,7 @@ def find_pokemon_id(name):
 #raid function
 @bot.command(pass_context=True)
 async def raid(ctx, arg, arg2, arg3, arg4):#arg = gym name, arg2 = pokemon name, arg3 = level, arg4 = time remaining
-    if ctx and ctx.message.channel.id == str(bot_channel):
+    if ctx and ctx.message.channel.id == str(bot_channel) and str(arg2).lower() in pokemon:
         pokemon_id = find_pokemon_id(str(arg2).capitalize())
         ts = int(time.time())
         if pokemon_id == "0":
@@ -108,6 +108,6 @@ async def spawn(ctx, arg, arg2, arg3):
 @bot.command(pass_context=True)
 async def map(ctx):
     if ctx:
-        await bot.say('Hey! Visit' + str(website) + ' to see our crowd-sourced spawns!')
+        await bot.say('Hey! Visit' + str(website) + ' to see our crowd-sourced raids and spawns!')
 
 bot.run(token)
