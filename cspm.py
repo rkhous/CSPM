@@ -55,7 +55,7 @@ async def raid(ctx, arg, arg2, arg3, arg4):#arg = gym name, arg2 = pokemon name,
                                 "VALUES "
                                 "(null, null, " + str(gym_id[1]) + ", "
                                 + str(arg3) + ", " + str(pokemon_id) + ", "
-                                " null, null," + str(time_spawn) + ", " + str(time_battle) + ", " + str(time_end) + ", null);")
+                                " null, null, " + str(time_spawn) + ", " + str(time_battle) + ", " + str(time_end) + ", null);")
                  database.commit()
                  await bot.say('Successfully added your raid to the live map.')
                  await bot.send_message(discord.Object(id=log_channel), str(ctx.message.author.name) + ' said there was a ' + str(arg2) +
