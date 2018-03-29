@@ -52,9 +52,10 @@ async def raid(ctx, arg, arg2, arg3, arg4):#arg = gym name, arg2 = pokemon name,
                            "pokemon_id, move_1, move_2, time_spawn, "
                            "time_battle, time_end, cp)"
                            "VALUES "
-                           "(null, null, " + str(gym_id[1]) + ", "
-                           + str(arg3) + ", " + str(pokemon_id) + ", null, null, "
-                           "null, null, " + str(time) + ", null);")
+                           "(null, null, %s, "
+                           "%s, %s, null, null, "
+                           "null, null, %s, null);"
+                           , (str(gym_id[1]), str(arg3), str(pokemon_id), str(time)))
             database.commit()
             await bot.say('Successfully added your raid to the live map.')
             await bot.send_message(discord.Object(id=log_channel), str(ctx.message.author.name) + ' said there was a ' + str(arg2) +
@@ -73,9 +74,10 @@ async def spawn(ctx, arg, arg2, arg3):
                            "id, pokemon_id, spawn_id, expire_timestamp, encounter_id, lat, lon, "
                            "atk_iv, def_iv, sta_iv, move_1, move_2, gender, "
                            "form, cp, level, updated, weather_boosted_condition, weather_cell_id, weight) "
-                           "VALUES (null, " + str(pokemon_id) +", null," + str(time) + ", null," + str(arg2) + ", " + str(arg3) +
+                           "VALUES (null, %s, null, %s, null, %s , %s"
                            ", null, null, null, null, null, null,"
-                           " null, null, null, null, null, null, null);")
+                           " null, null, null, null, null, null, null);"
+                           , (str(pokemon_id), str(time), str(arg2), str(arg3)))
             database.commit()
             await bot.say('Successfully added your spawn to the live map.\n'
                           '*Pokemon timers are automatically given 15 minutes since the timer is unknown.*')
