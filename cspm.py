@@ -91,4 +91,22 @@ async def map(ctx):
     if ctx:
         await bot.say('Hey! Visit ' + str(website) + ' to see our crowd-sourced raids and spawns!')
 
+@bot.command(pass_context=True)
+async def helpme(ctx):
+    if ctx:
+        help_embed=discord.Embed(
+            title='CSPM Help',
+            description='**Mapping Raids:**\n'
+                        'To add a raid to the live map, use the following command:\n'
+                        '`.raid <gym_name> <pokemon_name> <raid_level> <minutes remaining>`\n'
+                        'Example: `.raid "Fave Bird Mural" Lugia 5 45`\n\n'
+                        '**Mapping Spawns:**\n'
+                        'To add a spawn to the live map, use the following command:\n'
+                        '`.spawn <pokemon_name> <latitude> <longitude>`\n'
+                        'Example: `.spawn larvitar 34.101085 -118.287312`\n\n'
+                        '*To see raids that are crowdsourced, please make sure you tick the raids option in layers (top right)*',
+            color=3447003
+        )
+        await bot.say(embed=help_embed)
+        
 bot.run(token)
