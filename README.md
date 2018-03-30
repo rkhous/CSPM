@@ -1,10 +1,10 @@
 # CSPM
 Crowd-Sourced PokeMap for Monocle
 
-1) Install discord.py using: python3 -m pip install -U discord.py
+1) Install discord.py using: `python3 -m pip install -U discord.py`
 2) Set up config.py
 3) Run with:
-    python3 cspm.py
+    `python3 cspm.py`
 
 4) Error 2006: `SET GLOBAL max_allowed_packet=10485760;`
     
