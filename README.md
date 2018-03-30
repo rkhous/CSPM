@@ -17,4 +17,7 @@ Example: .spawn larvitar 34.101085 -118.287312
 Command: .raid <gym_name> <pokemon_name> <raid_level> <minutes_remaining>
 Example: .raid "Silverlake Painted" Rayquaza 5 29
 
-Note: Gym names in raids do not have to be completely filled in, just enough so MySQL can find a single gym. 
+Note: Gym names in raids do not have to be completely filled in, just enough so MySQL can find a single gym.
+
+ 
+SUPPORT: https://discord.gg/X5PdpSq
