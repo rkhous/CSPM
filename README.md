@@ -5,6 +5,8 @@ Crowd-Sourced PokeMap for Monocle
 2) Set up config.py
 3) Run with:
     python3 cspm.py
+
+4) Error 2006: `SET GLOBAL max_allowed_packet=10485760;`
     
 **Spawns:
 Spawns are given a 15 minute timer since the timer is assumed to be unknown. (Your maps will likely have a spawnpoint option though)
