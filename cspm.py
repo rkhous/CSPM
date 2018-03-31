@@ -135,6 +135,8 @@ async def spawn(ctx, arg, arg2, arg3):
                                    ' at these coordinates: ' + str(arg2) + ', ' + str(arg3))  and print(str(ctx.message.author.name) + ' said there was a wild ' + str(arg) +
                                    ' at these coordinates: ' + str(arg2) + ', ' + str(arg3))
         except:
+            tb = traceback.print_exc(file=sys.stdout)
+            print(tb)
             await bot.say('Unsuccessful in database query, your reported spawn was not added to the live map.')
 @bot.command(pass_context=True)
 async def map(ctx):
