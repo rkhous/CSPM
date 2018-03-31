@@ -3,9 +3,12 @@ import discord
 from discord.ext import commands
 import asyncio
 from pokemonlist import pokemon, pokejson
-from config import bot_channel, token, host, user, password, database, website, log_channel
+from config import bot_channel, token, host, user, password, database, website, log_channel, raids_channel
 import datetime
 import calendar
+import math
+import sys
+import traceback
 
 bot = commands.Bot(command_prefix = '.')#set prefix to .
 
@@ -31,6 +34,16 @@ def find_pokemon_id(name):
             if v == name:
                 return int(k)
         return 0
+    
+def calculate_cp(pokemon, level, iv_attack, iv_defense, iv_stamina):
+    stats = base_stats[str(pokemon)]
+    cpm = cp_multipliers[str(level)]
+
+    return math.floor(
+        (cpm * cpm *
+         (stats['attack'] + iv_attack)
+         * math.sqrt((stats['defense'] + iv_defense))
+         * math.sqrt((stats['stamina'] + iv_stamina))) / 10)
 
 def get_time(minute):
     future = datetime.datetime.utcnow() + datetime.timedelta(minutes=minute)
@@ -38,15 +51,46 @@ def get_time(minute):
 
 #raid function
 @bot.command(pass_context=True)
-async def raid(ctx, arg, arg2, arg3, arg4):#arg = gym name, arg2 = pokemon name, arg3 = level, arg4 = time remaining
+async def raid(ctx, arg, arg2, arg3, arg4):  # arg = gym name, arg2 = pokemon name, arg3 = level, arg4 = time remaining
     if ctx and ctx.message.channel.id == str(bot_channel) and str(arg2).lower() in pokemon:
         pokemon_id = find_pokemon_id(str(arg2).capitalize())
         time = get_time(int(arg4))
         try:
-            cursor.execute("SELECT id FROM forts WHERE NAME LIKE '" + str(arg) + "%';")
+            cursor.execute("SELECT url FROM forts WHERE name LIKE '" + str(arg) + "%';")
+            image = str(cursor.fetchall())
+            image = image.split(',')
+            image = image[0].split("'")
+            cursor.execute("SELECT name FROM forts WHERE name LIKE '" + str(arg) + "%';")
+            gym_title = str(cursor.fetchall())
+            if '"' in gym_title:
+                gym_title = gym_title.split('"')
+            elif "'" in gym_title:
+                gym_title = gym_title.split("'")
+            cursor.execute("SELECT lat FROM forts WHERE name LIKE '" + str(arg) + "%';")
+            lat = str(cursor.fetchall())
+            lat = lat.split(',')
+            lat = lat[0].split('(')
+            cursor.execute("SELECT lon FROM forts WHERE name LIKE '" + str(arg) + "%';")
+            lon = str(cursor.fetchall())
+            lon = lon.split(',')
+            lon = lon[0].split('(')
+            cursor.execute("SELECT id FROM forts WHERE name LIKE '" + str(arg) + "%';")
             gym_id = str(cursor.fetchall())
             gym_id = gym_id.split(',')
             gym_id = gym_id[0].split('((')
+            raid_embed = discord.Embed(
+                title=(str(gym_title[1])),
+                url=("https://www.google.com/maps/?q=" + str(lat[2]) + "," + str(lon[2])),
+                description=str(arg2).capitalize() + " raid is available on the live map!\n"
+                                                     "**Level:** " + str(arg3) + "\n"
+                                                     "**L20 100%:** " + str(calculate_cp(pokemon_id, 20, 15, 15, 15)) + "\n"
+                                                     "**L25 100%:** " + str(calculate_cp(pokemon_id, 25, 15, 15, 15)) + "\n"
+                                                     "**Minutes Remaining:** " + str(arg4) + "\n"
+                                                     "**Live Map:** "+ str(website),
+                color=3447003
+            )
+            raid_embed.set_thumbnail(url=image[1])
+            raid_embed.set_image(url="http://www.pokestadium.com/sprites/xy/" + str(arg2).lower() + ".gif")
             cursor.execute("INSERT INTO raids("
                            "id, external_id, fort_id , level, "
                            "pokemon_id, move_1, move_2, time_spawn, "
@@ -58,12 +102,18 @@ async def raid(ctx, arg, arg2, arg3, arg4):#arg = gym name, arg2 = pokemon name,
                            , (str(gym_id[1]), str(arg3), str(pokemon_id), str(time)))
             database.commit()
             await bot.say('Successfully added your raid to the live map.')
-            await bot.send_message(discord.Object(id=log_channel), str(ctx.message.author.name) + ' said there was a ' + str(arg2) +
-                                   ' raid going on at ' + str(arg)) and print(str(ctx.message.author.name) + ' said there was a ' + str(arg2) +
-                                   ' raid going on at ' + str(arg))
+            await bot.send_message(discord.Object(id=raids_channel), embed=raid_embed)
+            await bot.send_message(discord.Object(id=log_channel),
+                                   str(ctx.message.author.name) + ' said there was a ' + str(arg2) +
+                                   ' raid going on at ' + str(arg)) and print(
+                str(ctx.message.author.name) + ' said there was a ' + str(arg2) +
+                ' raid going on at ' + str(arg))
         except:
             database.rollback()
-            await bot.say('Unsuccesful in database query, your raid was not added to the live map.')
+            tb = traceback.print_exc(file=sys.stdout)
+            print(tb)
+            await bot.say('Unsuccessful in database query, your raid was not added to the live map.')
+            
 @bot.command(pass_context=True)
 async def spawn(ctx, arg, arg2, arg3):
     if ctx and ctx.message.channel.id == str(bot_channel) and arg in pokemon:
@@ -98,7 +148,7 @@ async def helpme(ctx):
             title='CSPM Help',
             description='**Mapping Raids:**\n'
                         'To add a raid to the live map, use the following command:\n'
-                        '`.raid <gym_name> <pokemon_name> <raid_level> <minutes remaining>`\n'
+                        '`.raid <gym_name> <pokemon_name> <raid_level> <minutes_remaining>`\n'
                         'Example: `.raid "Fave Bird Mural" Lugia 5 45`\n\n'
                         '**Mapping Spawns:**\n'
                         'To add a spawn to the live map, use the following command:\n'
