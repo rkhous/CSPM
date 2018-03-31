@@ -2,7 +2,7 @@ import MySQLdb
 import discord
 from discord.ext import commands
 import asyncio
-from pokemonlist import pokemon, pokejson
+from pokemonlist import pokemon, pokejson, base_stats, cp_multipliers
 from config import bot_channel, token, host, user, password, database, website, log_channel, raids_channel
 import datetime
 import calendar
