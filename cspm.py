@@ -116,7 +116,7 @@ async def raid(ctx, arg, arg2, arg3, arg4):  # arg = gym name, arg2 = pokemon na
             
 @bot.command(pass_context=True)
 async def spawn(ctx, arg, arg2, arg3):
-    if ctx and ctx.message.channel.id == str(bot_channel) and arg in pokemon:
+    if ctx and ctx.message.channel.id == str(bot_channel) and str(arg).lower() in pokemon:
         pokemon_id = find_pokemon_id(str(arg).capitalize())
         time = get_time(15)
         try:
