@@ -1,12 +1,18 @@
 # CSPM
 Crowd-Sourced PokeMap for Monocle
 
-1) Install discord.py using: `python3 -m pip install -U discord.py`
-2) Set up config.py
-3) Run with:
-    `python3 cspm.py`
+1. Install [pipenv](https://docs.pipenv.org/)
+2. Install mysql 
+    * `brew install mysql`
+3. Checkout repository
+    * `git clone ...`
+4. Setup dependencies
+    * `cd CSPM`
+    * `pipenv install`
+5. Run inside pipenv
+    * `pipenv run cspm.py`
 
-4) Error 2006: `SET GLOBAL max_allowed_packet=10485760;`
+**Error 2006: `SET GLOBAL max_allowed_packet=10485760;`
     
 *Spawns:*
 Spawns are given a 15 minute timer since the timer is assumed to be unknown. (Your maps will likely have a spawnpoint option though)
