@@ -13,7 +13,7 @@ import traceback
 bot = commands.Bot(command_prefix = '.')#set prefix to .
 
 database = MySQLdb.connect(host,user,password,database)
-
+database.ping(True)
 cursor = database.cursor()
 
 def find_pokemon_id(name):
