@@ -7,12 +7,12 @@
 - Run with: `python3 cspm.py`
 
     
-##Spawns:
+## Spawns:
 - Spawns are given a 15 minute timer since the timer is assumed to be unknown. (Your maps will likely have a spawnpoint option though)
 - Command: ```.spawn <pokemon_name> <lat> <lon>```
 - Example: ```.spawn larvitar 34.101085 -118.287312```
 
-##Raids *(currently no eggs)*:
+## Raids *(currently no eggs)*:
 - Command: ```.raid <gym_name> <pokemon_name> <raid_level> <minutes_remaining>```
 - Example: ```.raid "Silverlake Painted" Rayquaza 5 29```
 
