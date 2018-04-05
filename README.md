@@ -19,4 +19,5 @@
 - Note: Gym names in raids do not have to be completely filled in, just enough so MySQL can find a single gym.
 
  
-[SUPPORT](https://discord.gg/X5PdpSq)
+[Support, if you'd like](http://paypal.me/rkhous)
+[Join my Discord](https://discord.gg/FDbSR9K)
