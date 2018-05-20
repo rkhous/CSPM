@@ -23,7 +23,7 @@ def find_pokemon_id(name):
         return 32
     elif name == 'Mr-Mime':
         return 122
-    elif name == 'Ho-Oh':
+    elif name == 'Ho-oh':
         return 250
     elif name == 'Mime-Jr':
         return 439
