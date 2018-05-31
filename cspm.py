@@ -148,6 +148,38 @@ async def spawn(ctx, arg, arg2, arg3):
             tb = traceback.print_exc(file=sys.stdout)
             print(tb)
             await bot.say('Unsuccessful in database query, your reported spawn was not added to the live map.')
+
+@bot.command(pass_context=True)
+async def quest(ctx, arg, arg2, arg3):
+    if ctx:
+        try:
+            cursor.execute("SELECT lat FROM pokestops WHERE name LIKE '%" + str(arg) + "%'")
+            lat = str(cursor.fetchall())
+            lat = lat.split(',')
+            lat = lat[0].split('((')
+            lat = lat[1]
+            cursor.execute("SELECT lon FROM pokestops WHERE name LIKE '%" + str(arg) + "%'")
+            lon = str(cursor.fetchall())
+            lon = lon.split(',')
+            lon = lon[0].split('((')
+            lon = lon[1]
+            url = ('https://www.google.com/maps/?q=' + str(lat) + ',' + str(lon))
+            embed = discord.Embed(
+                title = 'Quest Reported! Click for directions!',
+                url = str(url),
+                description = ('**Quest: **' + str(arg2) + '\n\n'
+                               '**Reward: **' + str(arg3) + '')
+            )
+            embed.set_footer(text='Reported by: ' + str(ctx.message.author.name))
+            embed.set_thumbnail(url=('https://78.media.tumblr.com/7afe8f0cc9db095e6b3e3d00b2ff8dd7/tumblr_od0n3p2RtX1s2kttoo1_400.gif'))
+            await bot.send_message(discord.Object(id=quest_channel), embed=embed)
+            await bot.say('Successfully shared your report in #cspm_quests, thank you for sharing!')
+        except:
+            database.rollback()
+            tb = traceback.print_exc(file=sys.stdout)
+            print(tb)
+            await bot.say('Unsuccessful in database query, your reported quest was not added to the quest channel.')
+
 @bot.command(pass_context=True)
 async def map(ctx):
     if ctx:
@@ -166,6 +198,9 @@ async def helpme(ctx):
                         'To add a spawn to the live map, use the following command:\n'
                         '`.spawn <pokemon_name> <latitude> <longitude>`\n'
                         'Example: `.spawn larvitar 34.101085 -118.287312`\n\n'
+                        '**Sharing Quests**\n'
+                        'To add a quest to the quests channel, use the following command:\n'
+                        '`.quest <stop_name> <quest_type> <quest_reward>\n\n'
                         '*To see raids that are crowdsourced, please make sure you tick the raids option in layers (top right)*',
             color=3447003
         )
