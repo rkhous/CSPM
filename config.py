@@ -4,7 +4,7 @@ website = 'http://mapnamehere.com' #URL to map if you want the .map function to 
 log_channel = '123456789012345678' #Add a log channel, copy the ID here, give this bot access to the channel.
 raids_channel = '123456789012345678' #create a channel for raids, copy ID here, give the bot access to writing in the channel.
 spawn_channel = '123456789012345678' #create a channel for spawns, copy ID here, give the bot access to writing in the channel.
-
+quest_channel = '123456789012345678' #create a channel for quests, copy ID here, give the bot access to writing in the channel.
 
 #####DATABASE, limited to MySQL and MariaDB#####
 host = 'localhost'  #host
