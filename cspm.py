@@ -186,7 +186,7 @@ async def coords(*, message:str):
     geo = Nominatim()
     coord = geo.geocode(str(message))
     try:
-        await bot.say('The coordinates you requested for the address are shown below, you can now copy and paste it for the quest command.')
+        await bot.say('The coordinates you requested for the address are shown below, you can now copy and paste it for the spawn command.')
         await bot.say(str(coord.latitude) + ' ' + str(coord.longitude))
     except:
         tb = traceback.print_exc(file=sys.stdout)
