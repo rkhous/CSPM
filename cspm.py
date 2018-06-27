@@ -165,11 +165,17 @@ async def quest(ctx, arg, arg2, arg3):
             lon = lon[0].split('((')
             lon = lon[1]
             url = ('https://www.google.com/maps/?q=' + str(lat) + ',' + str(lon))
+            cursor.execute("SELECT name FROM pokestops WHERE name LIKE '%" + str(arg) + "%'")
+            stop_name = str(cursor.fetchall())
+            stop_name = stop_name.split("(('")
+            stop_name = str(stop_name[1]).split("',)")
+            stop_name = str(stop_name[0])
             embed = discord.Embed(
                 title = 'Quest Reported! Click for directions!',
                 url = str(url),
-                description = ('**Quest: **' + str(arg2) + '\n\n'
-                               '**Reward: **' + str(arg3) + '')
+                description = ('**Pokestop: **' + str(stop_name) + '\n\n'
+                			   '**Quest: **' + str(arg2).capitalize() + '\n\n'
+                               '**Reward: **' + str(arg3).capitalize() + '')
             )
             embed.set_footer(text='Reported by: ' + str(ctx.message.author.name))
             embed.set_thumbnail(url=('https://78.media.tumblr.com/7afe8f0cc9db095e6b3e3d00b2ff8dd7/tumblr_od0n3p2RtX1s2kttoo1_400.gif'))
