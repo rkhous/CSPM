@@ -23,5 +23,5 @@
 - Example: ```.quest "Fishermans Warf" "Complete a Raid" "Dratini"```
 
  ## Other
-- [Support, if you'd like](http://paypal.me/rkhous)
+- [Support the development, if you'd like](http://paypal.me/rkhous)
 - [Join my Discord](https://discord.gg/FDbSR9K)
