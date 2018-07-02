@@ -18,6 +18,10 @@
 
 - Note: Gym names in raids do not have to be completely filled in, just enough so MySQL can find a single gym.
 
+## Quests *(currently no map support)*:
+- Command: ```.quest <stop_name> <quest_type> <quest_reward>```
+- Example: ```.quest "Fishermans Warf" "Complete a Raid" "Dratini"```
+
  ## Other
 - [Support, if you'd like](http://paypal.me/rkhous)
 - [Join my Discord](https://discord.gg/FDbSR9K)
