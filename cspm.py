@@ -116,10 +116,11 @@ async def raid(ctx, arg, arg2, arg3, arg4):  # arg = gym name, arg2 = pokemon na
             await bot.say('Unsuccessful in database query, your raid was not added to the live map.')
             
 @bot.command(pass_context=True)
-async def spawn(ctx, arg, arg2, arg3):
+async def spawn(ctx, arg, arg2, arg3, arg4=None):
     if ctx and ctx.message.channel.id == str(bot_channel) and str(arg).lower() in pokemon:
         pokemon_id = find_pokemon_id(str(arg).capitalize())
         time = get_time(15)
+        desc = str(arg4)
         try:
             cursor.execute("INSERT INTO sightings("
                            "id, pokemon_id, spawn_id, expire_timestamp, encounter_id, lat, lon, "
@@ -137,6 +138,7 @@ async def spawn(ctx, arg, arg2, arg3):
                 url=("https://www.google.com/maps/?q=" + str(arg2) + "," + str(arg3)),
                 description=('A wild ' + str(arg).capitalize() + ' is available!\n\n'
                                                                  '**Time Remaining:** ~15 minutes.\n'
+                                                                 '**Description:** ' + str(desc) + '\n'
                                                                  '**Spotted by:** ' + str(ctx.message.author.name) + '!'),
                 color=3447003
             )
@@ -215,7 +217,7 @@ async def helpme(ctx):
                         'Example: `.raid "Fave Bird Mural" Lugia 5 45`\n\n'
                         '**Mapping Spawns:**\n'
                         'To add a spawn to the live map, use the following command:\n'
-                        '`.spawn <pokemon_name> <latitude> <longitude>`\n'
+                        '`.spawn <pokemon_name> <latitude> <longitude> <optional_description>`\n'
                         'Example: `.spawn larvitar 34.101085 -118.287312`\n\n'
                         '**Sharing Quests**\n'
                         'To add a quest to the quests channel, use the following command:\n'
