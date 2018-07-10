@@ -221,7 +221,9 @@ async def helpme(ctx):
                         'Example: `.spawn larvitar 34.101085 -118.287312`\n\n'
                         '**Sharing Quests**\n'
                         'To add a quest to the quests channel, use the following command:\n'
-                        '`.quest <stop_name> <quest_type> <quest_reward>\n\n'
+                        '`.quest <stop_name> <quest_type> <quest_reward>`\n\n'
+                        '**Converting Address to Coordinates:**\n'
+                        '`.coords <address>`\n\n'
                         '*To see raids that are crowdsourced, please make sure you tick the raids option in layers (top right)*',
             color=3447003
         )
