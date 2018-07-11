@@ -54,7 +54,7 @@ def get_time(minute):
 @bot.command(pass_context=True)
 async def raid(ctx, arg, arg2, arg3, arg4):  # arg = gym name, arg2 = pokemon name, arg3 = level, arg4 = time remaining
     if ctx and ctx.message.channel.id == str(bot_channel) and str(arg2).lower() in pokemon:
-        pokemon_id = find_pokemon_id(str(arg2).capitalize())
+        pokemon_id = find_pokemon_id(str(arg2).title())
         time = get_time(int(arg4))
         try:
             cursor.execute("SELECT url FROM forts WHERE name LIKE '" + str(arg) + "%';")
@@ -82,7 +82,7 @@ async def raid(ctx, arg, arg2, arg3, arg4):  # arg = gym name, arg2 = pokemon na
             raid_embed = discord.Embed(
                 title=(str(gym_title[1])),
                 url=("https://www.google.com/maps/?q=" + str(lat[2]) + "," + str(lon[2])),
-                description=str(arg2).capitalize() + " raid is available on the live map!\n"
+                description=str(arg2).title() + " raid is available on the live map!\n"
                                                      "**Level:** " + str(arg3) + "\n"
                                                      "**L20 100%:** " + str(calculate_cp(pokemon_id, 20, 15, 15, 15)) + "\n"
                                                      "**L25 100%:** " + str(calculate_cp(pokemon_id, 25, 15, 15, 15)) + "\n"
@@ -118,7 +118,7 @@ async def raid(ctx, arg, arg2, arg3, arg4):  # arg = gym name, arg2 = pokemon na
 @bot.command(pass_context=True)
 async def spawn(ctx, arg, arg2, arg3, arg4=None):
     if ctx and ctx.message.channel.id == str(bot_channel) and str(arg).lower() in pokemon:
-        pokemon_id = find_pokemon_id(str(arg).capitalize())
+        pokemon_id = find_pokemon_id(str(arg).title())
         time = get_time(15)
         desc = str(arg4)
         try:
@@ -136,7 +136,7 @@ async def spawn(ctx, arg, arg2, arg3, arg4=None):
             spawn_embed=discord.Embed(
                 title='Click for directions!',
                 url=("https://www.google.com/maps/?q=" + str(arg2) + "," + str(arg3)),
-                description=('A wild ' + str(arg).capitalize() + ' is available!\n\n'
+                description=('A wild ' + str(arg).title() + ' is available!\n\n'
                                                                  '**Time Remaining:** ~15 minutes.\n'
                                                                  '**Description:** ' + str(desc) + '\n'
                                                                  '**Spotted by:** ' + str(ctx.message.author.name) + '!'),
@@ -176,8 +176,8 @@ async def quest(ctx, arg, arg2, arg3):
                 title = 'Quest Reported! Click for directions!',
                 url = str(url),
                 description = ('**Pokestop: **' + str(stop_name) + '\n\n'
-                			   '**Quest: **' + str(arg2).capitalize() + '\n\n'
-                               '**Reward: **' + str(arg3).capitalize() + '')
+                			   '**Quest: **' + str(arg2).title() + '\n\n'
+                               '**Reward: **' + str(arg3).title() + '')
             )
             embed.set_footer(text='Reported by: ' + str(ctx.message.author.name))
             embed.set_thumbnail(url=('https://78.media.tumblr.com/7afe8f0cc9db095e6b3e3d00b2ff8dd7/tumblr_od0n3p2RtX1s2kttoo1_400.gif'))
