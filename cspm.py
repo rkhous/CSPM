@@ -172,14 +172,12 @@ async def quest(ctx, arg, arg2, arg3):
             stop_name = stop_name.split("(('")
             stop_name = str(stop_name[1]).split("',)")
             stop_name = str(stop_name[0])
-            now = datetime.datetime.now()
             embed = discord.Embed(
                 title = 'Quest Reported! Click for directions!',
                 url = str(url),
                 description = ('**Pokestop: **' + str(stop_name) + '\n\n'
                 			   '**Quest: **' + str(arg2).title() + '\n\n'
-                               '**Reward: **' + str(arg3).title() + '\n\n'
-                               'Expires on: ' + str(now.month) + '/' + str(now.day) + '/' + str(now.year) + ' at 11:59pm')
+                               '**Reward: **' + str(arg3).title() + '\n\n')
             )
             embed.set_footer(text='Reported by: ' + str(ctx.message.author.name))
             embed.set_thumbnail(url=('https://78.media.tumblr.com/7afe8f0cc9db095e6b3e3d00b2ff8dd7/tumblr_od0n3p2RtX1s2kttoo1_400.gif'))
