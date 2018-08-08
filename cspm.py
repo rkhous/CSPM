@@ -172,6 +172,7 @@ async def quest(ctx, arg, arg2, arg3):
             stop_name = stop_name.split("(('")
             stop_name = str(stop_name[1]).split("',)")
             stop_name = str(stop_name[0])
+            now = datetime.datetime.now()
             embed = discord.Embed(
                 title = 'Quest Reported! Click for directions!',
                 url = str(url),
