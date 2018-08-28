@@ -22,6 +22,12 @@
 - Command: ```.quest <stop_name> <quest_type> <quest_reward>```
 - Example: ```.quest "Fishermans Warf" "Complete a Raid" "Dratini"```
 
- ## Other
+## Searching for gyms:
+- Command: ```.search <gym_name>```
+- Example: ```.search Starbucks```
+
+-Note: Gym names do not have to be completely filled in. Searching for 'tarbuck' will still show all gyms with with that string in them!
+
+## Other
 - [Support the development, if you'd like](http://paypal.me/rkhous)
 - [Join my Discord](https://discord.gg/FDbSR9K)
