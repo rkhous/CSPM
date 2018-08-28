@@ -53,14 +53,19 @@ def get_time(minute):
 @bot.command(pass_context=True)
 async def search(ctx, arg):
     if True:
-        await bot.say('Checking database....')
-        cursor.execute("SELECT name, lat, lon FROM forts WHERE name LIKE '%" + str(arg) + "%';")
-        fetch_gyms = [cursor.fetchall()]
-        for gyms in fetch_gyms:
-            full_list = gyms
-            for n in full_list:
-                await bot.say('```' + str(full_list[full_list.index(n)]) + '```')
+        if len(arg) >= 3:
+            await bot.say('*Reading database....*')
+            cursor.execute("SELECT name, lat, lon FROM forts WHERE name LIKE '%" + str(arg) + "%';")
+            fetch_gyms = [cursor.fetchall()]
 
+            for gyms in fetch_gyms:
+                full_list = gyms
+                for n in full_list:
+                    await bot.say('```' + str(full_list[full_list.index(n)]) + '```')
+        else:
+            await bot.say('Please use more than 3 characters to avoid spam issues!')
+            pass
+        
 #raid function
 @bot.command(pass_context=True)
 async def raid(ctx, arg, arg2, arg3, arg4):  # arg = gym name, arg2 = pokemon name, arg3 = level, arg4 = time remaining
