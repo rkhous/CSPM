@@ -51,13 +51,18 @@ def get_time(minute):
     return calendar.timegm(future.timetuple())
 
 @bot.command(pass_context=True)
-async def search(ctx, arg):
+async def search(ctx, arg, arg2):
     if True:
         if len(arg) >= 3:
+            if arg == 'pokestop' or arg == 'pokestops':
+                user_choice = 'pokestops'
+            elif arg == 'gym' or arg == 'gyms':
+                user_choice = 'forts'
+            else:
+                pass
             await bot.say('*Reading database....*')
-            cursor.execute("SELECT name, lat, lon FROM forts WHERE name LIKE '%" + str(arg) + "%';")
+            cursor.execute("SELECT name, lat, lon FROM " + str(user_choice) + " WHERE name LIKE '%" + str(arg2) + "%';")
             fetch_gyms = [cursor.fetchall()]
-
             for gyms in fetch_gyms:
                 full_list = gyms
                 for n in full_list:
