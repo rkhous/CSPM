@@ -26,7 +26,7 @@
 - Command: ```.search <gym_name>```
 - Example: ```.search Starbucks```
 
--Note: Gym names do not have to be completely filled in. Searching for 'tarbuck' will still show all gyms with with that string in them!
+- Note: Gym names do not have to be completely filled in. Searching for 'tarbuck' will still show all gyms with with that string in them!
 
 ## Other
 - [Support the development, if you'd like](http://paypal.me/rkhous)
