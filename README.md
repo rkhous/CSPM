@@ -22,11 +22,12 @@
 - Command: ```.quest <stop_name> <quest_type> <quest_reward>```
 - Example: ```.quest "Fishermans Warf" "Complete a Raid" "Dratini"```
 
-## Searching for gyms:
-- Command: ```.search <gym_name>```
-- Example: ```.search Starbucks```
+## Searching for gyms and stops:
+- Command: ```.search <gym/pokestop> <name>```
+- Example: ```.search gym starbucks```
+- Example: ```.search pokestop sprint```
 
-- Note: Gym names do not have to be completely filled in. Searching for 'tarbuck' will still show all gyms with with that string in them!
+- Note: Gym/Pokestop names do not have to be completely filled in. Searching for 'tarbuck' will still show all gyms with with that string in them!
 
 ## Other
 - [Support the development, if you'd like](http://paypal.me/rkhous)
