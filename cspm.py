@@ -50,6 +50,17 @@ def get_time(minute):
     future = datetime.datetime.utcnow() + datetime.timedelta(minutes=minute)
     return calendar.timegm(future.timetuple())
 
+@bot.command(pass_context=True)
+async def search(ctx, arg):
+    if True:
+        await bot.say('Checking database....')
+        cursor.execute("SELECT name, lat, lon FROM forts WHERE name LIKE '%" + str(arg) + "%';")
+        fetch_gyms = [cursor.fetchall()]
+        for gyms in fetch_gyms:
+            full_list = gyms
+            for n in full_list:
+                await bot.say('```' + str(full_list[full_list.index(n)]) + '```')
+
 #raid function
 @bot.command(pass_context=True)
 async def raid(ctx, arg, arg2, arg3, arg4):  # arg = gym name, arg2 = pokemon name, arg3 = level, arg4 = time remaining
