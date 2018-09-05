@@ -70,6 +70,18 @@ async def search(ctx, arg, arg2):
         else:
             await bot.say('Please use more than 3 characters to avoid spam issues!')
             pass
+@bot.command(pass_context=True)
+async def version(ctx):
+    await bot.say('*Sending request....*')
+    re = requests.get('https://raw.githubusercontent.com/Furtif/POGOProtos/master/.current-version')
+    await bot.say('`' + str(re.status_code) + ' ' + str(re.reason) + '`')
+    em=discord.Embed(
+        title='POGO Forced Version',
+        description='**Currently Forced POGO App Version:**\n' + str(re.text),
+        color=3447003
+    )
+    em.set_thumbnail(url='https://storage.googleapis.com/nianticweb/nianticlabs/img/global/header_niantic_logo.png')
+    await bot.say(embed=em) 
         
 #raid function
 @bot.command(pass_context=True)
