@@ -171,7 +171,7 @@ async def spawn(ctx, arg, arg2, arg3, arg4=None):
                 url=("https://www.google.com/maps/?q=" + str(arg2) + "," + str(arg3)),
                 description=('A wild ' + str(arg).title() + ' is available!\n\n'
                                                                  '**Time Remaining:** ~15 minutes.\n'
-                                                                 '**Description:** ' + str(desc) + '\n'
+                                                                 '**Description:** ' + str(desc).title() + '\n'
                                                                  '**Spotted by:** ' + str(ctx.message.author.name) + '!'),
                 color=3447003
             )
