@@ -61,7 +61,7 @@ async def search(ctx, arg, arg2):
             else:
                 pass
             await bot.say('*Reading database....*')
-            cursor.execute("SELECT name, lat, lon FROM " + str(user_choice) + " WHERE name LIKE '%" + str(arg2) + "%';")
+            cursor.execute("SELECT name, lat, lon FROM " + str(user_choice) + " WHERE name LIKE '%" + str(arg2) + "%' ORDER BY CHAR_LENGTH(name);")
             fetch_gyms = [cursor.fetchall()]
             for gyms in fetch_gyms:
                 full_list = gyms
@@ -189,18 +189,18 @@ async def spawn(ctx, arg, arg2, arg3, arg4=None):
 async def quest(ctx, arg, arg2, arg3):
     if ctx:
         try:
-            cursor.execute("SELECT lat FROM pokestops WHERE name LIKE '%" + str(arg) + "%'")
+            cursor.execute("SELECT lat FROM pokestops WHERE name LIKE '%" + str(arg) + "%' ORDER BY CHAR_LENGTH(name);")
             lat = str(cursor.fetchall())
             lat = lat.split(',')
             lat = lat[0].split('((')
             lat = lat[1]
-            cursor.execute("SELECT lon FROM pokestops WHERE name LIKE '%" + str(arg) + "%'")
+            cursor.execute("SELECT lon FROM pokestops WHERE name LIKE '%" + str(arg) + "%' ORDER BY CHAR_LENGTH(name);")
             lon = str(cursor.fetchall())
             lon = lon.split(',')
             lon = lon[0].split('((')
             lon = lon[1]
             url = ('https://www.google.com/maps/?q=' + str(lat) + ',' + str(lon))
-            cursor.execute("SELECT name FROM pokestops WHERE name LIKE '%" + str(arg) + "%'")
+            cursor.execute("SELECT name FROM pokestops WHERE name LIKE '%" + str(arg) + "%' ORDER BY CHAR_LENGTH(name);")
             stop_name = str(cursor.fetchall())
             stop_name = stop_name.split("(('")
             stop_name = str(stop_name[1]).split("',)")
