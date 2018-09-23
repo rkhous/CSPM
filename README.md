@@ -5,6 +5,7 @@
 - Install discord.py using: `python3 -m pip install -U discord.py`
 - Set up config.py
 - Run with: `python3 cspm.py`
+- If you run into 'No module named MySQLdb' issues: first run `sudo apt-get install gcc python-dev` followed by `pip3 install mysqlclient`
 
     
 ## Spawns:
