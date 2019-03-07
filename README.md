@@ -1,5 +1,7 @@
 # CSPM
 
+New version of CSPM available, programmed in Go: https://github.com/rkhous/Go-CSPM
+
 ## Crowd-Sourced PokeMap for Monocle
 
 - Install discord.py using: `python3 -m pip install -U discord.py`
