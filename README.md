@@ -1,6 +1,6 @@
 # CSPM
 
-New version of CSPM available, programmed in Go: https://github.com/rkhous/Go-CSPM
+New version of CSPM available, programmed in Go and much more stable: https://github.com/rkhous/Go-CSPM
 
 ## Crowd-Sourced PokeMap for Monocle
 
